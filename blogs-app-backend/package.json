@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ../../../2/luento/notes && npm run build && cp -r build ../../../3/luento/notes-backend",
+    "build:ui": "rm -rf build && cd ../blogs-app/ && npm run build && cp -r build ../blogs-app-backend",
     "deploy": "fly deploy",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod": "heroku logs --tail",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs",
     "lint": "eslint .",
     "test": "jest --verbose"
   },
