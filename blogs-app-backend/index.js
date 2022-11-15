@@ -1,70 +1,76 @@
-require('dotenv').config()
+const app = require('./app') // the actual Express application
 const http = require('http')
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const Blog = require('./models/blog')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 
-const requestLogger = (request, response, next) => {
-  console.log('Method:', request.method)
-  console.log('Path:  ', request.path)
-  console.log('Body:  ', request.body)
-  console.log('---')
-  next()
-}
+const server = http.createServer(app)
 
-app.use(cors())
-app.use(express.static('build'))
-app.use(express.json())
-app.use(requestLogger)
-
-app.get('/api/blogs', (request, response) => {
-  Blog
-    .find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`)
 })
 
-app.post('/api/blogs', (request, response, next) => {
-  const blog = new Blog(request.body)
 
-  // const blog = new Blog({
-  //   title: body.title,
-  //   author: body.author,
-  //   url: body.url,
-  //   likes: body.likes
-  // })
+// require('dotenv').config()
+// const http = require('http')
+// const express = require('express')
+// const cors = require('cors')
+// const app = express()
+// const config = require('./utils/config')
+// const Blog = require('./models/blog')
 
-  blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
-    })
-    .catch(error => next(error))
-})
+// const requestLogger = (request, response, next) => {
+//   console.log('Method:', request.method)
+//   console.log('Path:  ', request.path)
+//   console.log('Body:  ', request.body)
+//   console.log('---')
+//   next()
+// }
 
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+// app.use(cors())
+// app.use(express.static('build'))
+// app.use(express.json())
+// app.use(requestLogger)
 
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
-}
+// app.get('/api/blogs', (request, response) => {
+//   Blog
+//     .find({})
+//     .then(blogs => {
+//       response.json(blogs)
+//     })
+// })
 
-app.use(unknownEndpoint)
+// app.post('/api/blogs', (request, response, next) => {
+//   const blog = new Blog(request.body)
 
-const errorHandler = (error, request, response, next) => {
-  console.error(error.message)
+//   blog
+//     .save()
+//     .then(result => {
+//       response.status(201).json(result)
+//     })
+//     .catch(error => next(error))
+// })
 
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'This is not a correct id!' })
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
-  }
+// const PORT = process.env.PORT
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`)
+// })
 
-  next(error)
-}
+// const unknownEndpoint = (request, response) => {
+//   response.status(404).send({ error: 'unknown endpoint' })
+// }
 
-app.use(errorHandler)
+// app.use(unknownEndpoint)
+
+// const errorHandler = (error, request, response, next) => {
+//   console.error(error.message)
+
+//   if (error.name === 'CastError') {
+//     return response.status(400).send({ error: 'This is not a correct id!' })
+//   } else if (error.name === 'ValidationError') {
+//     return response.status(400).json({ error: error.message })
+//   }
+
+//   next(error)
+// }
+
+// app.use(errorHandler)

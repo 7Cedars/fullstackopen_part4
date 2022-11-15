@@ -1,17 +1,4 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
-
-const url = process.env.MONGODB_URI
-
-console.log('connecting to', url)
-
-mongoose.connect(url)
-  .then(result => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
 
 const blogSchema = new mongoose.Schema({
     title: String,
@@ -19,26 +6,6 @@ const blogSchema = new mongoose.Schema({
     url: String,
     likes: Number
   })
-
-// const itemSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     minLength: 3,
-//     required: true
-//   },
-//   number: {
-//     type: String,
-//     minLength: 8,
-//     validate: {
-//       validator: function(v) {
-//         // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-//         return /^\d{2,3}-\d+/.test(v)
-//       },
-//       message: props => `${props.value} is not a correct number!`
-//     },
-//     required: [true, 'Number required']
-//   }
-// })
 
 blogSchema.set('toJSON', {
   transform: (document, returnedObject) => {
