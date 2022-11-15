@@ -23,6 +23,22 @@ const listWithMultipleBlogs = [
     }, 
     {
         _id: 'Ca422aa71b54a676234d17f8',
+        title: 'Go To Statement Considered Harmful',
+        author: 'Edsger W. Dijkstra',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 4,
+        __v: 0
+    }, 
+    {
+        _id: 'Da422aa71b54a676234d17f8',
+        title: 'Go To Statement Considered Harmful',
+        author: 'Edsger W. Dijkstra',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 9,
+        __v: 0
+     }, 
+    {
+        _id: 'Ga422aa71b54a676234d17f8',
         title: 'Ok then',
         author: 'Edsger W. Dijkstra',
         url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
@@ -30,7 +46,7 @@ const listWithMultipleBlogs = [
         __v: 0
       },
     {
-      _id: 'Da422aa71b54a676234d17f8',
+      _id: 'Ha422aa71b54a676234d17f8',
       title: 'But what will I find?',
       author: 'Who Is Real',
       url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
@@ -38,12 +54,20 @@ const listWithMultipleBlogs = [
       __v: 0
     },
     {
-      _id: 'Ea422aa71b54a676234d17f8',
+      _id: 'Ia422aa71b54a676234d17f8',
       title: '... hello?',
       author: 'Jane Doe',
       url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
       likes: 12,
       __v: 0
+    }, 
+    {
+        _id: 'Fa422aa71b54a676234d17f8',
+        title: 'Go To Statement Considered Harmful',
+        author: 'Edsger W. Dijkstra',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 1,
+        __v: 0
     }, 
   ]
 
@@ -66,56 +90,50 @@ describe('sum of likes', () => {
   
     test('larger list is calculated correctly', () => {
       const result = listHelper.totalLikes(listWithMultipleBlogs)
-      expect(result).toBe(36)
+      expect(result).toBe(50)
     })
   })
 
-  describe('max likes', () => {
+describe('max likes', () => {
     test('of empty list is null', () => {
-      const result = listHelper.favoriteBlog(listWithNoBlog)
-      expect(result).toBe(null)
+        const result = listHelper.favoriteBlog(listWithNoBlog)
+        expect(result).toBe(null)
     })
-  
+
     test('if only one post, its max likes equals likes of blog post', () => {
-      const result = listHelper.favoriteBlog(listWithOneBlog)
-      console.log(result)
-      expect(result.likes).toBe(5)
+        const result = listHelper.favoriteBlog(listWithOneBlog)
+        expect(result.likes).toBe(5)
     })
-  
-    test('larger list is calculated correctly', () => {
-      const result = listHelper.favoriteBlog(listWithMultipleBlogs)
-      expect(result.likes).toBe(15)
-    })
-  })
 
-  describe('favorite blog post', () => {
-    test('of empty list is null', () => {
-      const result = listHelper.favoriteBlog(listWithNoBlog)
-      expect(result).toEqual(null)
+    test('larger list is calculated correctly', () => {
+        const result = listHelper.favoriteBlog(listWithMultipleBlogs)
+        expect(result.likes).toBe(15)
     })
-  
-    test('of one post, is that post', () => {
-      const result = listHelper.favoriteBlog(listWithOneBlog)
-      console.log(result)
-      expect(result).toEqual(
-        {
-            title: 'Go To Statement Considered Harmful',
-            author: 'Edsger W. Dijkstra',
-            likes: 5,
-        }
-      )
-    })
-  
-    test('of larger list is picked correctly', () => {
-      const result = listHelper.favoriteBlog(listWithMultipleBlogs)
-      expect(result).toEqual(
-        {
-            title: 'Ok then',
-            author: 'Edsger W. Dijkstra',
-            likes: 15
-        }
-    )
-  })
 })
+
+describe('most blogged author', () => {
+    test('of empty list is null', () => {
+        const result = listHelper.mostBlogs(listWithNoBlog)
+        expect(result).toEqual(null)
+    })
+
+    test('of one post, is that post', () => {
+        const result = listHelper.mostBlogs(listWithOneBlog)
+        expect(result).toEqual(        {
+            author: 'Edsger W. Dijkstra',
+            blogs: 1
+        })
+    })
+
+    test('of larger list is picked correctly', () => {
+        const result = listHelper.mostBlogs(listWithMultipleBlogs)
+        console.log(result)
+        expect(result).toEqual(        {
+            author: 'Edsger W. Dijkstra',
+            blogs: 4
+        })
+    })
+ })
+
 
  

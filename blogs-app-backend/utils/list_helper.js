@@ -1,3 +1,5 @@
+lodash = require('lodash');
+
 const dummy = (blogs) => {
   const Blogs = 1
 
@@ -33,6 +35,28 @@ const favoriteBlog  = (blogs) => {
     }
 }
 
+const mostBlogs  = (blogs) => {
+
+  if (blogs.length === 0) { return null } 
+
+  const authorsArray = blogs.map(blog => blog.author) 
+  // const test = lodash.group(authorsArray, length)
+
+  const authorsRanked = authorsArray.reduce(function (accumulated, current) {
+    return accumulated[current] ? 
+              ++accumulated[current] 
+              : 
+              accumulated[current] = 1, accumulated
+    }, {});
+
+  const maxAuthor = Object.keys(authorsRanked).reduce((a, b) => authorsRanked[a] > authorsRanked[b] ? a : b) 
+
+  return { 
+      author: maxAuthor, 
+      blogs: authorsRanked[maxAuthor]
+    } 
+}
+
 module.exports = {
-  dummy, totalLikes, favoriteBlog
+  dummy, totalLikes, favoriteBlog, mostBlogs
 }
