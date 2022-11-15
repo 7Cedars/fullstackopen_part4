@@ -61,13 +61,13 @@ describe('sum of likes', () => {
       expect(result).toBe(0)
     })
   
-    test.only('if only one post, its likes equals sum of likes', () => {
+    test('if only one post, its likes equals sum of likes', () => {
       const result = listHelper.totalLikes(listWithOneBlog)
       expect(result).toBe(5)
     })
   
     test('larger list is calculated correctly', () => {
-      const result = listHelper.totalLikes(listWithOneBlog)
+      const result = listHelper.totalLikes(listWithMultipleBlogs)
       expect(result).toBe(36)
     })
   })

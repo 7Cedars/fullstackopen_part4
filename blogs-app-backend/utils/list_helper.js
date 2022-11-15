@@ -6,14 +6,14 @@ const dummy = (blogs) => {
 
 const totalLikes = (blogs) => {
 
-  const reducer = (sum, item) => {
-    item = blogs.likes 
-    return sum + item
+  const summingLikes = (sum, blog) => {
+    return sum + blog.likes
   }
 
   return blogs.length === 0
   ? 0
-  : blogs.reduce(reducer, 0) 
+  : blogs.reduce(summingLikes, 0) 
+
 }
 
 module.exports = {
