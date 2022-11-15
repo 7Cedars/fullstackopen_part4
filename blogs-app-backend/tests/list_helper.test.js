@@ -62,6 +62,14 @@ const listWithMultipleBlogs = [
       __v: 0
     }, 
     {
+        _id: 'Ia422aa71b54a676234d17f9',
+        title: '... hello???',
+        author: 'Jane Doe',
+        url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+        likes: 10,
+        __v: 0
+      }, 
+    {
         _id: 'Fa422aa71b54a676234d17f8',
         title: 'Go To Statement Considered Harmful',
         author: 'Edsger W. Dijkstra',
@@ -90,7 +98,7 @@ describe('sum of likes', () => {
   
     test('larger list is calculated correctly', () => {
       const result = listHelper.totalLikes(listWithMultipleBlogs)
-      expect(result).toBe(50)
+      expect(result).toBe(60)
     })
   })
 
@@ -127,10 +135,32 @@ describe('most blogged author', () => {
 
     test('of larger list is picked correctly', () => {
         const result = listHelper.mostBlogs(listWithMultipleBlogs)
-        console.log(result)
-        expect(result).toEqual(        {
+        expect(result).toEqual({
             author: 'Edsger W. Dijkstra',
             blogs: 4
+        })
+    })
+ })
+
+ describe('most liked author', () => {
+    test('of empty list is null', () => {
+        const result = listHelper.mostLikes(listWithNoBlog)
+        expect(result).toEqual(null)
+    })
+
+    test('of one post, is that author of that post', () => {
+        const result = listHelper.mostLikes(listWithOneBlog)
+        expect(result).toEqual({
+            author: 'Edsger W. Dijkstra',
+            likes: 5
+        })
+    })
+
+    test('of larger list is picked correctly', () => {
+        const result = listHelper.mostLikes(listWithMultipleBlogs)
+        expect(result).toEqual({
+            author: 'Edsger W. Dijkstra',
+            likes: 29
         })
     })
  })
