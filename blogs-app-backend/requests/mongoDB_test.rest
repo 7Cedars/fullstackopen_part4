@@ -1,0 +1,19 @@
+
+    # title: String,
+    # author: String,
+    # url: String,
+    # likes: Number
+
+###
+POST http://localhost:3003/api/blogs
+content-type: application/json
+
+{
+    "title": "My first saved blog",
+    "author": "Jane Doe",
+    "url": "BlogsFromJaneDoe.org/43527845278",
+    "likes": 2
+}
+
+### 
+GET http://localhost:3003/api/blogs
