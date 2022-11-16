@@ -101,19 +101,55 @@ describe('deleting blogs works correctly', () => {
 
         await api.delete(`/api/blogs/${existingId}`)
         const response2 = await api.get('/api/blogs')
-        console.log('response:', response.body, 
-                    'response2:', response2.body)
 
         expect(response2.body).toHaveLength(response.body.length -1)
     })
 
     test('if a non existing id is provided, nothing happens', async () => {
         const response = await api.get('/api/blogs')
+        const nonExistingId = await helper.nonExistingId()
 
-        await api.delete(`/api/blogs/${helper.nonExistingId()}`)
+        console.log("helper.nonExistingId(): ", nonExistingId)
+
+        await api.delete(`/api/blogs/${nonExistingId}`)
         const response2 = await api.get('/api/blogs')
 
         expect(response2.body).toHaveLength(response.body.length)
     })
+})
+
+describe('updating blogs works correctly', () => {
+
+    test('Blog correctly updates title', async () => {
+        const existingBlog = await api.get('/api/blogs')
+        const existingId = existingBlog.body[0].id
+
+        const newTitle = {title: "An Updated Title"} 
+
+        await api
+            .put(`/api/blogs/${existingId}`)
+            .send(newTitle)
+            .expect(204)
+
+        const updatedBlogs = await api.get(`/api/blogs`)        
+        const updatedTitles = updatedBlogs.body.map(blog => blog.title)
+        expect(updatedTitles).toContain("An Updated Title")
+    })
+
+    test('Blog correctly updates likes', async () => {
+        const existingBlog = await api.get('/api/blogs')
+        const existingId = existingBlog.body[0].id
+
+        const newLikes = {likes: existingBlog.body[0].likes + 1} 
+
+        await api
+            .put(`/api/blogs/${existingId}`)
+            .send(newLikes)
+            .expect(204)
+
+        const updatedBlogs = await api.get(`/api/blogs`)
+        expect(updatedBlogs.body[0].likes + 0).toEqual(existingBlog.body[0].likes + 1)
+    })
 
 })
+
