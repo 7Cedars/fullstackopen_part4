@@ -2,11 +2,14 @@ POST http://localhost:3003/api/blogs
 content-type: application/json
 
 {
-    "title": "My second saved blog",
+    "title": "My third saved blog",
     "author": "Jane Doe",
     "url": "BlogsFromJaneDoe.org/43527845278",
-    "likes": 4
+    "likes": 15
 }
 
 ### 
 GET http://localhost:3003/api/blogs
+
+### 
+DELETE http://localhost:3003/api/blogs/6374d75e8effcb82cfb53d7c
