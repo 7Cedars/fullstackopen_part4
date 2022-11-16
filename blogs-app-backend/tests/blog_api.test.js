@@ -68,3 +68,24 @@ test('New blog with no likes defaults to 0', async () => {
     expect(lastBlog[0].likes).toEqual(0) 
 })
 
+test('New blog without title or url results in error status 400 bad request', async () => {
+    const noTitleOrUrl = [
+        {
+            author: "Matti Luukkainen",
+            url: "How to Make create good MOOCs - part 2.",
+            likes: 14
+        },
+        {
+            title: "An added blog without likes",
+            author: "Matti Luukkainen",
+            likes: 14
+        }] 
+
+    const promiseArray = noTitleOrUrl.map(blog => api
+        .post('/api/blogs')
+        .send(blog)
+        .expect(400)
+        )
+    
+    await Promise.all(promiseArray)
+})
