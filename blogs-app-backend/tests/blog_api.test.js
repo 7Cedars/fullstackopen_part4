@@ -51,3 +51,20 @@ test('it saves a (valid) blog correctly', async () => {
     expect(response.body).toHaveLength(helper.firstBlogs.length + 1) 
 })
 
+test('New blog with no likes defaults to 0', async () => {
+    const newSavedBlog =   {
+        title: "An added blog without likes",
+        author: "Matti Luukkainen",
+        url: "How to Make create good MOOCs - part 2."
+      }
+
+    await api
+        .post('/api/blogs')
+        .send(newSavedBlog)
+        .expect(201)
+
+    const response = await api.get('/api/blogs')
+    const lastBlog = response.body.slice(-1)
+    expect(lastBlog[0].likes).toEqual(0) 
+})
+
