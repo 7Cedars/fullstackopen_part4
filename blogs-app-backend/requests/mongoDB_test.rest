@@ -29,11 +29,25 @@ POST http://localhost:3003/api/users
 content-type: application/json
 
 {
-    "username": "root",
-    "name": "superuser",
-    "password": "Te33333"
+    "username": "root2",
+    "name": "superuser2",
+    "password": "Te222222"
 }
+
+# {
+#     "username": "root",
+#     "name": "superuser",
+#     "password": "Te33333"
+# }
 
 ### get all users - (and testing duplicate username)
 GET http://localhost:3003/api/users
 
+### do login
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "root2",
+    "password": "Te222222"
+}
