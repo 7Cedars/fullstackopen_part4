@@ -7,7 +7,7 @@ const helper = require('./test_helper')
 
 beforeEach(async () => {
     await Blog.deleteMany({})
-    console.log('cleared')
+    console.log('Blogs cleared')
   
     const blogObjects = 
         helper.firstBlogs

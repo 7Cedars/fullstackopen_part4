@@ -24,18 +24,16 @@ content-type: application/json
     "author": "another title"
 }
 
-### create a new user 
+### create a new user - (and testing duplicate username)
 POST http://localhost:3003/api/users
 content-type: application/json
 
 {
     "username": "7Cedars",
     "name": "Cedars Seven",
-    "password": "TestTest!"
+    "password": "Te33333"
 }
 
-# {
-#     "username": "root",
-#     "name": "Superuser",
-#     "password": "TestTest!"
-# }
+### get all users - (and testing duplicate username)
+GET http://localhost:3003/api/users
+
