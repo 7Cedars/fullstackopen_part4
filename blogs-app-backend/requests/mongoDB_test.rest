@@ -1,3 +1,5 @@
+
+### save a blog. 
 POST http://localhost:3003/api/blogs
 content-type: application/json
 
@@ -8,16 +10,32 @@ content-type: application/json
     "likes": 15
 }
 
-### 
+### get all saved blogs. 
 GET http://localhost:3003/api/blogs
 
-### 
+### Delete a saved blog by id 
 DELETE http://localhost:3003/api/blogs/6374d75e8effcb82cfb53d7c
 
-### 
+### update a saved blog 
 PUT http://localhost:3003/api/blogs/6374dfe577eb499226effdb9
 content-type: application/json
 
 {
     "author": "another title"
 }
+
+### create a new user 
+POST http://localhost:3003/api/users
+content-type: application/json
+
+{
+    "username": "7Cedars",
+    "name": "Cedars Seven",
+    "password": "TestTest!"
+}
+
+# {
+#     "username": "root",
+#     "name": "Superuser",
+#     "password": "TestTest!"
+# }
