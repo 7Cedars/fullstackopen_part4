@@ -14,8 +14,11 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb
 ### get all saved blogs. 
 GET http://localhost:3003/api/blogs
 
+
 ### Delete a saved blog by id 
-DELETE http://localhost:3003/api/blogs/6376189ffb0bb6bb1699b872
+DELETE http://localhost:3003/api/blogs/637623610d8238717ff1c0dc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QyIiwiaWQiOiI2Mzc2Mjg3ZDBlZTMzNTgyZjkzMzg3MmEiLCJpYXQiOjE2Njg2OTQ4MDd9.uGfnq2OxrP2VCYn7bqB-xEZgmjd4g8fVxUvDEFJEXL0
+
 
 ### update a saved blog 
 PUT http://localhost:3003/api/blogs/6374dfe577eb499226effdb9

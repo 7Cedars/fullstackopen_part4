@@ -16,7 +16,7 @@ const firstBlogs = [
   },
   {
     title: "My third saved blog",
-    author: "Else, Someon",
+    author: "Else, Someone",
     url: "BlogsFromTheVoid.org/00000",
     likes: 4
   }

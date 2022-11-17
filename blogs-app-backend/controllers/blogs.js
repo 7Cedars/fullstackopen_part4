@@ -41,8 +41,23 @@ blogsRouter.post('/', async (request, response) => {
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
-  await Blog.findByIdAndRemove(request.params.id)
-  response.status(204).end()
+
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)  
+  if (!decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+  
+  const blog = await Blog.findById(request.params.id)
+  const userid = decodedToken.id
+
+  console.log(blog.user.toString() === userid.toString() )
+
+  if ( blog.user.toString() === userid.toString() ){
+    await Blog.findByIdAndRemove(request.params.id)
+    response.status(204).json(request.params.id)
+  } else {
+    response.status(401).end()
+  }
 })
 
 // ok, so this is not the most efficient way.. but it works! 
