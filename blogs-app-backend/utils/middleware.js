@@ -1,5 +1,14 @@
 const logger = require('./logger')
 
+const tokenExtractor = (request, response, next) => {
+  // code that extracts the token
+  const authorization = request.get('authorization')
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    request.token = authorization.substring(7)
+  } 
+    next()
+  }
+
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
   logger.info('Path:  ', request.path)
@@ -25,7 +34,7 @@ const errorHandler = (error, request, response, next) => {
     })
   } else if (error.name === 'JsonWebTokenError') {
   return response.status(401).json({
-    error: 'invalid token'
+      error: 'invalid token'
     })
   } else if (error.name === 'TokenExpiredError') {
     return response.status(401).json({
@@ -36,6 +45,7 @@ const errorHandler = (error, request, response, next) => {
 }
 
 module.exports = {
+  tokenExtractor, 
   requestLogger,
   unknownEndpoint,
   errorHandler
