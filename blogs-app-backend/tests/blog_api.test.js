@@ -34,7 +34,7 @@ describe('creating blogs works correctly', () => {
         expect(Object.keys(response.body[0])).not.toContain('_id')
     })
 
-    test('it saves a (valid) blog correctly', async () => {
+    test.only('it saves a (valid) blog correctly', async () => {
         const newSavedBlog =   {
             title: "An added blog",
             author: "Matti Luukkainen",

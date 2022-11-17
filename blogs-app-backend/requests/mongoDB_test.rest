@@ -4,7 +4,7 @@ POST http://localhost:3003/api/blogs
 content-type: application/json
 
 {
-    "title": "My third saved blog",
+    "title": "My fifth saved blog",
     "author": "Jane Doe",
     "url": "BlogsFromJaneDoe.org/43527845278",
     "likes": 15
@@ -14,7 +14,7 @@ content-type: application/json
 GET http://localhost:3003/api/blogs
 
 ### Delete a saved blog by id 
-DELETE http://localhost:3003/api/blogs/6374d75e8effcb82cfb53d7c
+DELETE http://localhost:3003/api/blogs/6376189ffb0bb6bb1699b872
 
 ### update a saved blog 
 PUT http://localhost:3003/api/blogs/6374dfe577eb499226effdb9
@@ -29,8 +29,8 @@ POST http://localhost:3003/api/users
 content-type: application/json
 
 {
-    "username": "7Cedars",
-    "name": "Cedars Seven",
+    "username": "root",
+    "name": "superuser",
     "password": "Te33333"
 }
 

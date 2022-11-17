@@ -7,9 +7,12 @@ const blogSchema = new mongoose.Schema({
     author: {
       type: String,
       required: true},
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'},
     url: {
       type: String,
-      required: true},
+    },
     likes: Number
   })
 
