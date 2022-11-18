@@ -2,7 +2,7 @@
 ### save a blog. 
 POST http://localhost:3003/api/blogs
 content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzNzYyMmY5NWVjNWQyNWE4MDIwYmVmMiIsImlhdCI6MTY2ODY5ODMyMn0.izT0G_jVGKrqKfIvI8ZxO4Z_Lj58JO_sAIoyt0ZRbBQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzNzYyMmY5NWVjNWQyNWE4MDIwYmVmMiIsImlhdCI6MTY2ODc2MzU3M30.QubEvpBJsiSjky0FcVlTBzRKhoL_TOgppT5o2_6FeMU
 
 {
     "title": "Saved blog with middleware active as root",
@@ -16,9 +16,8 @@ GET http://localhost:3003/api/blogs
 
 
 ### Delete a saved blog by id 
-DELETE http://localhost:3003/api/blogs/6376529263bb728cc05f5037
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzNzYyMmY5NWVjNWQyNWE4MDIwYmVmMiIsImlhdCI6MTY2ODY5ODMyMn0.izT0G_jVGKrqKfIvI8ZxO4Z_Lj58JO_sAIoyt0ZRbBQ
-
+DELETE http://localhost:3003/api/blogs/637752133cb812ed289c28c4
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzNzYyMmY5NWVjNWQyNWE4MDIwYmVmMiIsImlhdCI6MTY2ODc2MzU3M30.QubEvpBJsiSjky0FcVlTBzRKhoL_TOgppT5o2_6FeMU
 
 ### update a saved blog 
 PUT http://localhost:3003/api/blogs/6374dfe577eb499226effdb9

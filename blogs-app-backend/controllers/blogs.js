@@ -1,7 +1,6 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
+const { tokenExtractor, userExtractor } = require('../utils/middleware')
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog.find({})
@@ -18,35 +17,39 @@ blogsRouter.get('/:id', async (request, response) => {
 
   response.json(blog)    
 })
-  
-blogsRouter.post('/', async (request, response) => {
- const blog = new Blog(request.body)
+
+blogsRouter.post('/', tokenExtractor, userExtractor, async (request, response) => {
+  const blog = new Blog(request.body)
   
   blog.likes ? blog.likes = blog.likes : blog.likes = 0
+  
   blog.user = request.user.id
   const savedBlog = await blog.save()
 
   request.user.blogs = request.user.blogs.concat(savedBlog.id)
   await request.user.save()
 
-  response.status(201).json(savedBlog)
+  response.status(201).json(savedBlog) 
+  
 })
 
-blogsRouter.delete('/:id', async (request, response) => {
+blogsRouter.delete('/:id', tokenExtractor, userExtractor, async (request, response) => {
   
-  const blog = await Blog.findById(request.params.id)
-  const userid = request.user.id
+  try {
+    const blog = await Blog.findById(request.params.id)
+    const userid = request.user.id
 
-  if ( blog.user.toString() === userid.toString() ){
-    await Blog.findByIdAndRemove(request.params.id)
-    response.status(204).json(request.params.id)
-  } else {
+    if ( blog.user.toString() === userid.toString() ){
+      await Blog.findByIdAndRemove(request.params.id)
+      response.status(204).json(request.params.id)
+    } 
+  } catch {
     response.status(401).end()
   }
 })
 
 // ok, so this is not the most efficient way.. but it works! 
-blogsRouter.put('/:id', async (request, response) => {
+blogsRouter.put('/:id', tokenExtractor, userExtractor, async (request, response) => {
   const update = request.body
   const originalBlog = await Blog.findById(request.params.id)
   let updatedBlog = originalBlog

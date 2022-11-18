@@ -1,43 +1,43 @@
 const Blog = require('../models/blog')
 const User = require('../models/user')
 
-const firstBlogs = [
+const usersArray = [
   {
-    title: "My first saved blog",
-    author: "Jane Doe",
-    url: "BlogsFromJaneDoe.org/43527845278",
-    likes: 4
+    username: 'AdaL',
+    name: 'Ada Lovelace',
+    password: 'ThisIsALongPassword'
   },
   {
-    title: "My second saved blog",
-    author: "John Doe",
-    url: "BlogsFromJohnDoe.org/a67324g",
-    likes: 4
+    username: '7Cedars',
+    name: 'Seven Cedars',
+    password: 'ThisIsAnotherLongPassword'
   },
   {
-    title: "My third saved blog",
-    author: "Else, Someone",
-    url: "BlogsFromTheVoid.org/00000",
-    likes: 4
+    username: 'Ada2',
+    name: 'Ada Lovelace the Second',
+    password: 'ThisIsAnEvenLongerPassword'
   }
 ]
 
-const stockUsers = [
+const blogsArray = [
   {
-    username: "root",
-    name: "Superuser",
-    password: "9043nkjfb382"
-  },
+    title: "Blog number one",
+    author: "Jane Doe",
+    url: "BlogsFromJaneDoe.org/43527845278",
+    likes: 15
+  }, 
   {
-    username: "AdaL",
-    name: "Ada Lovelace",
-    password: "324nmv3r90328"
-  },
+    title: "Blog number two",
+    author: "John Doe",
+    url: "BlogsFromJohnDoe.org/43527845278",
+    likes: 15
+  }, 
   {
-    username: "NewUser",
-    name: "User New",
-    password: "3ewqwqe28"
-  }
+    title: "Blog number three!",
+    author: "Someone Else",
+    url: "BlogsFromSomeoneElse.org/43527845278",
+    likes: 15
+  }, 
 ]
 
 const nonExistingId = async () => {
@@ -64,9 +64,9 @@ const usersInDb = async () => {
 }
 
 module.exports = {
-    firstBlogs,
-    stockUsers, 
-    blogsInDb, 
-    nonExistingId,
-    usersInDb, 
+  usersArray,
+  blogsArray,
+  blogsInDb, 
+  nonExistingId,
+  usersInDb, 
 }
