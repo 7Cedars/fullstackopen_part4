@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
 const api = supertest(app)
-const Blog = require('../models/blog')
 const helper = require('./test_helper')
+const Blog = require('../models/blog')
 const User = require('../models/user')
 
 beforeEach(async () => {
@@ -39,9 +39,6 @@ beforeEach(async () => {
         .post('/api/blogs')
         .set('Authorization', `bearer ${loggedInUser.body.token}`) 
         .send(helper.blogsArray[2])
-    
-    const blogs = await api.get('/api/blogs')
-    const users = await api.get('/api/users')
 
 })
 
